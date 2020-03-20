@@ -3,11 +3,8 @@ import {Button} from 'antd';
 
 import './app.css';
 
-export const App = () => {
-  return (
+export const App = () => (
     <div className="App">
-      <Button type="primary">Button</Button>
+        <Button type="primary">Button</Button>
     </div>
-  );
-};
-
+);
