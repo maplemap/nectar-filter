@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {App} from './app/app';
 import * as serviceWorker from './serviceWorker';
 
+import './main.less';
+
 // eslint-disable-next-line no-undef
 ReactDOM.render(<App />, document.getElementById('root'));
 

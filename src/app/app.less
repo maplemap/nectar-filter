@@ -1,0 +1,35 @@
+@import './color-library';
+
+
+.nectar-app {
+    height: 100%;
+
+    &__header {
+      display: flex;
+      height: 6rem;
+      background: @color-gray;
+    }
+
+    &__logo {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width: 16.6rem;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &__content-box {
+      padding: 0 2rem;
+    }
+
+    &__content {
+      height: 100%;
+      padding: 1rem;
+      min-height: 280px;
+      background: @color-white;
+    }
+}
