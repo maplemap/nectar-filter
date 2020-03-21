@@ -1,20 +1,28 @@
 @import './color-library';
 
+@border: @color-gray 1px solid;
 
 .nectar-app {
     height: 100%;
+    background: @color-white;
 
     &__header {
       display: flex;
       height: 6rem;
-      background: @color-gray;
+      border-bottom: @border;
+      background: @color-white;
+    }
+
+    &__sub-header {
+      border-bottom: @border;
+      background: @color-white;
     }
 
     &__logo {
       display:flex;
       align-items:center;
       justify-content:center;
-      width: 16.6rem;
+      width: 12.6rem;
 
       img {
         width: 100%;

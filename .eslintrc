@@ -18,6 +18,9 @@
         "array-bracket-spacing": ["error", "never"],
         "comma-dangle": 0,
         "object-curly-newline": 0,
-        "react/jsx-tag-spacing": 0
+        "react/jsx-tag-spacing": 0,
+        "react/no-unescaped-entities": 0,
+        "react/prop-types": 0,
+        "arrow-parens": 0
     }
 }
