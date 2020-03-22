@@ -28,12 +28,14 @@ export const FilterPopup = ({children, filterType, ...props}) => {
     });
 
     const setAppliedFilters = useCallback(() => {
-        dispatch({
-            appliedFilters: {
-                ...appliedFilters,
-                [filterType]: checkedFiltersIds
-            }
-        });
+        if (checkedFiltersIds.length > 0) {
+            dispatch({
+                appliedFilters: {
+                    ...appliedFilters,
+                    [filterType]: checkedFiltersIds
+                }
+            });
+        }
     });
 
     const resetCheckedFilters = useCallback(() => {
