@@ -1,6 +1,4 @@
-@import './color-library';
-
-@border: @color-gray 1px solid;
+@import './colors';
 
 .nectar-app {
     height: 100%;
@@ -9,13 +7,13 @@
     &__header {
       display: flex;
       height: 6rem;
-      border-bottom: @border;
+      border-bottom: @color-gray 1px solid;
       background: @color-white;
     }
 
     &__sub-header {
-      border-bottom: @border;
       background: @color-white;
+      border-bottom: @color-gray 1px solid;
     }
 
     &__logo {
