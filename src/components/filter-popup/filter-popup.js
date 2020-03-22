@@ -1,33 +1,18 @@
-import React, {useContext, useState, useCallback, useEffect} from 'react';
-import {Popover, Button} from 'antd';
+import React, {useContext, useState, useCallback} from 'react';
+import {Popover, Collapse} from 'antd';
+import {FilterPopupContent} from './filter-popup-content';
 import {ContextApp} from '../../reducer';
+import {getCapitalized} from '../../utils';
 
 import './filter-popup.less';
 
-const PRIMARY = 'primary';
+export const FilterPopup = ({children, filterTypes, ...props}) => {
+    const {Panel} = Collapse;
+    const [popoverShown, setPopoverShown] = useState(false);
+    const {state: {filtersData, appliedFilters, isMobile}, dispatch} = useContext(ContextApp);
 
-export const FilterPopup = ({children, filterType, ...props}) => {
-    const [checkedFiltersIds, setCheckedFiltersIds] = useState([]);
-    const {state: {filtersData, appliedFilters}, dispatch} = useContext(ContextApp);
-
-    useEffect(() => {
-        if (!appliedFilters[filterType]) {
-            setCheckedFiltersIds([]);
-        }
-    }, [appliedFilters]);
-
-    const itemOnClick = useCallback(e => {
-        const {name} = e.target;
-        const newCheckedFilters = (
-            checkedFiltersIds.includes(name) ?
-                checkedFiltersIds.filter(filter => filter !== name) :
-                [...checkedFiltersIds, name]
-        );
-
-        setCheckedFiltersIds(newCheckedFilters);
-    });
-
-    const setAppliedFilters = useCallback(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const setAppliedFilters = useCallback(({checkedFiltersIds, filterType}) => {
         if (checkedFiltersIds.length > 0) {
             dispatch({
                 appliedFilters: {
@@ -38,56 +23,56 @@ export const FilterPopup = ({children, filterType, ...props}) => {
         }
     });
 
-    const resetCheckedFilters = useCallback(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const resetCheckedFilters = useCallback(filterType => {
         const newAppliedFilters = {...appliedFilters};
         delete newAppliedFilters[filterType];
 
         dispatch({appliedFilters: newAppliedFilters});
-        setCheckedFiltersIds([]);
     });
 
     const onVisibleChange = shown => {
-        if (!shown) {
-            setCheckedFiltersIds(appliedFilters[filterType] || []);
-        }
-
+        setPopoverShown(shown);
         props.onVisibleChange(shown);
     };
 
-    const getContent = () => (
-        <>
-            <div>
-                {filtersData[filterType].map(({id, title}) => (
-                    <Button key={id} {...{
-                        name: id,
-                        className: 'filter-popup__content-item',
-                        onClick: itemOnClick,
-                        ...(checkedFiltersIds.includes(id) ? {type: PRIMARY} : null)
-                    }}
-                    >
-                        {title}
-                    </Button>
-                ))}
-            </div>
-            <div className="filter-popup__action-buttons">
-                {
-                    checkedFiltersIds.length > 0 &&
-                    <Button onClick={resetCheckedFilters}>Cancel</Button>
-                }
-                <Button type="primary" onClick={setAppliedFilters}>
-                    Apply
-                </Button>
-            </div>
-        </>
-    );
+    const getContent = () => {
+        const isFilterTypesArray = Array.isArray(filterTypes);
+        const getFiltersPopupContent = type => (
+            <FilterPopupContent {...{
+                popoverShown,
+                filterType: type,
+                filtersByType: filtersData[type],
+                appliedFiltersByType: appliedFilters[type],
+                onApply: setAppliedFilters,
+                onReset: resetCheckedFilters
+            }}
+            />
+        );
+        return (
+            !isFilterTypesArray ?
+                getFiltersPopupContent(filterTypes) :
+                <Collapse>
+                    {filterTypes.map(type => (
+                        <Panel key={type} header={getCapitalized(type)}>
+                            {getFiltersPopupContent(type)}
+                        </Panel>
+                    ))}
+                </Collapse>
+        );
+    };
 
     return (
         <Popover
+            arrowPointAtCenter
             placement="bottom"
             trigger="click"
             content={getContent()}
             onVisibleChange={onVisibleChange}
-            overlayStyle={{width: '20rem', padding: 0}}
+            overlayStyle={{
+                width: isMobile ? '100%' : '20rem',
+                height: isMobile ? '200px' : 'auto'
+            }}
         >
             {children}
         </Popover>

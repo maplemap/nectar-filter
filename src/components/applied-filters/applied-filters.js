@@ -51,12 +51,7 @@ export const AppliedFilters = () => {
             <div className="applied-filters__items">
                 {isaAppliedFilterTypes ? getAllFilters() : NONE}
                 {isaAppliedFilterTypes && (
-                    <Button
-                        className="applied-filters__clear"
-                        onClick={clearAppliedFilters}
-                    >
-                        Clear All
-                    </Button>
+                    <Button onClick={clearAppliedFilters}>Clear All</Button>
                 )}
             </div>
         </div>

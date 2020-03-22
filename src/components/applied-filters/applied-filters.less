@@ -1,14 +1,18 @@
 .applied-filters {
   &__items {
     display: flex;
+    flex-wrap: wrap;
   }
 
   &__item {
     display: flex;
+    height: 2rem;
+    flex: 0 0 auto;
+    margin: 0 .5rem .5rem 0;
     align-items: center;
-  }
 
-  &__clear {
-    margin-left: .3rem;
+    &:last-child {
+      margin-right: .5em;
+    }
   }
 }
