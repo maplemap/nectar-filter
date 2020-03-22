@@ -1,0 +1,1 @@
+export {getCapitalized} from './getCapitalized';
