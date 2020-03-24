@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from 'antd';
-import {FilterPopup} from '../filter-popup';
+import {FilterPopup} from 'components/filter-popup';
 
 export const FilterMenuItem = ({
     filterTypes,

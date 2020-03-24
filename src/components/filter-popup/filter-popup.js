@@ -1,8 +1,8 @@
 import React, {useContext, useState, useCallback} from 'react';
 import {Popover, Collapse} from 'antd';
+import {ContextApp} from 'reducer';
+import {getCapitalized} from 'utils';
 import {FilterPopupContent} from './filter-popup-content';
-import {ContextApp} from '../../reducer';
-import {getCapitalized} from '../../utils';
 
 import './filter-popup.less';
 

@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react';
 import {Layout} from 'antd';
-import {FilterMenu} from '../components/filter-menu';
-import {AppliedFilters} from '../components/applied-filters';
+import {FilterMenu} from 'components/filter-menu';
+import {AppliedFilters} from 'components/applied-filters';
 import {ContextApp, initialState, reducer} from '../reducer';
 
 import logo from '../logo.png';
