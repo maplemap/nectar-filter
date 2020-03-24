@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterMenu when device is mobile when \`filtersData\` has keys more then \`3\` should render two \`FilterMenuItem\` components with single value in \`filterTypes\` property 1`] = `
+Array [
+  <FilterMenuItem
+    buttonItemOnClick={[Function]}
+    caption="Size"
+    filterTypes="size"
+    isActive={false}
+    key="size"
+    onPopupVisibleChange={[Function]}
+  />,
+  <FilterMenuItem
+    buttonItemOnClick={[Function]}
+    caption="Color"
+    filterTypes="color"
+    isActive={false}
+    key="color"
+    onPopupVisibleChange={[Function]}
+  />,
+]
+`;

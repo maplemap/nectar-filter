@@ -1,23 +1,14 @@
 import React, {useState, useContext, useCallback} from 'react';
+import {ContextApp} from 'reducer';
 import {FilterMenuItem} from './filter-menu-item';
-import {getCapitalized} from '../../utils';
-import {ContextApp} from '../../reducer';
+import {getCountCaption, getCountFiltersByType} from './utils'
 
 import './filter-menu.less';
-
-const getCountCaption = ({name, count}) => {
-    const appliedCount = count > 0 ? ` (${count})` : '';
-    return `${getCapitalized(name)}${appliedCount}`
-};
 
 export const FilterMenu = () => {
     const [activeItem, setActiveItem] = useState('');
     const {state: {filtersData, appliedFilters, isMobile}} = useContext(ContextApp);
-
-    const getCountFiltersByType = filterType => (
-        appliedFilters[filterType] && appliedFilters[filterType].length > 0 ?
-            appliedFilters[filterType].length : 0
-    );
+    const filtersDataKeys = Object.keys(filtersData);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const buttonItemOnClick = useCallback(e => {
@@ -32,7 +23,7 @@ export const FilterMenu = () => {
     });
 
     const getSingleFilterItem = filterType => {
-        const count = getCountFiltersByType(filterType);
+        const count = getCountFiltersByType({appliedFilters, filterType});
         return (
             <FilterMenuItem key={filterType} {...{
                 onPopupVisibleChange,
@@ -46,22 +37,22 @@ export const FilterMenu = () => {
     };
 
     const getMobileMenu = () => {
-        const buttonsTypes = Object.keys(filtersData).slice(0, 2);
-        const moreFilterTypes = Object.keys(filtersData).slice(2);
+        const buttonsKeys = filtersDataKeys.slice(0, 2);
+        const moreFilterKeys = filtersDataKeys.slice(2);
         const count = (
-            moreFilterTypes.reduce((acc, filterType) => (
-                acc + getCountFiltersByType(filterType)
+            moreFilterKeys.reduce((acc, filterType) => (
+                acc + getCountFiltersByType({appliedFilters, filterType})
             ), 0)
         );
         return (
             <>
-                {buttonsTypes.map(getSingleFilterItem)}
+                {buttonsKeys.map(getSingleFilterItem)}
                 <FilterMenuItem{...{
                     onPopupVisibleChange,
                     buttonItemOnClick,
-                    filterTypes: moreFilterTypes,
+                    filterTypes: moreFilterKeys,
                     caption: getCountCaption({count, name: 'More Filters'}),
-                    isActive: activeItem === moreFilterTypes.join() || count > 0
+                    isActive: activeItem === moreFilterKeys.join() || count > 0
                 }}
                 />
             </>
@@ -70,9 +61,9 @@ export const FilterMenu = () => {
 
     return (
         <div className="filter-menu">
-            {!isMobile ?
-                Object.keys(filtersData).map(getSingleFilterItem) :
-                getMobileMenu()}
+            {isMobile && filtersDataKeys.length > 3 ?
+                getMobileMenu() :
+                Object.keys(filtersData).map(getSingleFilterItem)}
         </div>
     )
 };
