@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterPopup given the \`filterTypes\` is Array should render \`Collapse\` component as content of \`Popover\` 1`] = `
+<Collapse
+  bordered={true}
+  expandIconPosition="left"
+  openAnimation={
+    Object {
+      "appear": [Function],
+      "enter": [Function],
+      "leave": [Function],
+    }
+  }
+>
+  <CollapsePanel
+    header="Type"
+  >
+    <FilterPopupContent
+      filterType="type"
+      onApply={[Function]}
+      onReset={[Function]}
+      popoverShown={false}
+    />
+  </CollapsePanel>
+</Collapse>
+`;
+
+exports[`FilterPopup given the \`filterTypes\` is not Array should render \`FilterPopupContent\` component as content of \`Popover\` 1`] = `
+<FilterPopupContent
+  filterType="type"
+  onApply={[Function]}
+  onReset={[Function]}
+  popoverShown={false}
+/>
+`;

@@ -18,7 +18,7 @@ const getComponent = props => (
 const getShallow = props => shallow(getComponent(props));
 
 describe('FilterMenu', () => {
-    const getContextState = ({filtersData = {}, appliedFilters = {}, isMobile = false}) => ({
+    const getContextData = ({filtersData = {}, appliedFilters = {}, isMobile = false}) => ({
         state: {filtersData, appliedFilters, isMobile}
     });
 
@@ -31,7 +31,7 @@ describe('FilterMenu', () => {
 
             beforeEach(() => {
                 setActiveItem = jest.fn();
-                React.useContext.mockReturnValue(getContextState({filtersData}));
+                React.useContext.mockReturnValue(getContextData({filtersData}));
                 React.useState.mockImplementation(activeItem => [activeItem, setActiveItem]);
                 filterMenuItems = getShallow().find(FilterMenuItem);
             });
@@ -73,7 +73,7 @@ describe('FilterMenu', () => {
             let filterMenuItems;
 
             beforeEach(() => {
-                React.useContext.mockReturnValue(getContextState({filtersData, isMobile: true}));
+                React.useContext.mockReturnValue(getContextData({filtersData, isMobile: true}));
                 wrapper = getShallow();
                 filterMenuItems = wrapper.find(FilterMenuItem);
             });
