@@ -20,13 +20,13 @@ export const FilterPopupContent = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const itemOnClick = useCallback(e => {
         const {name} = e.target;
-        const newCheckedFilters = (
+        const newCheckedFiltersIds = (
             checkedFiltersIds.includes(name) ?
                 checkedFiltersIds.filter(filter => filter !== name) :
                 [...checkedFiltersIds, name]
         );
 
-        setCheckedFiltersIds(newCheckedFilters);
+        setCheckedFiltersIds(newCheckedFiltersIds);
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,8 +56,7 @@ export const FilterPopupContent = ({
                 ))}
             </div>
             <div className="filter-popup__action-buttons">
-                {checkedFiltersIds.length > 0 &&
-                    <Button onClick={resetCheckedFilters}>Cancel</Button>}
+                {checkedFiltersIds.length > 0 && <Button onClick={resetCheckedFilters}>Cancel</Button>}
                 <Button type="primary" onClick={setAppliedFilters}>Apply</Button>
             </div>
         </>
