@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Tag, Button} from 'antd';
-import {ContextApp} from '../../reducer';
+import {ContextApp} from 'reducer';
 
 import './applied-filters.less';
 
