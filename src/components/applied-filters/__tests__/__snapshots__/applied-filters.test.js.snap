@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppliedFilters when \`appliedFilters\` is provided when \`removeFilterItem\` method was invoked should call \`dispatch\` with updated \`appliedFilters\` 1`] = `
+Object {
+  "appliedFilters": Object {
+    "color": Array [
+      "blue",
+    ],
+    "size": Array [
+      "2x2",
+    ],
+  },
+}
+`;
