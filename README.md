@@ -1,5 +1,7 @@
 ## Nectar Filter App
 
+Demo: https://maplemap.github.io/nectar-filter
+
 Small application for displaying groups of filters.
 In the project were used:
 - `React.js` - main library for view layer
