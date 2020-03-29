@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/nectar-filter/static/css/main.399000e4.chunk.css",
+    "main.js": "/nectar-filter/static/js/main.16ae252c.chunk.js",
+    "main.js.map": "/nectar-filter/static/js/main.16ae252c.chunk.js.map",
+    "runtime-main.js": "/nectar-filter/static/js/runtime-main.1fa3df40.js",
+    "runtime-main.js.map": "/nectar-filter/static/js/runtime-main.1fa3df40.js.map",
+    "static/css/2.1987e178.chunk.css": "/nectar-filter/static/css/2.1987e178.chunk.css",
+    "static/js/2.2846b22b.chunk.js": "/nectar-filter/static/js/2.2846b22b.chunk.js",
+    "static/js/2.2846b22b.chunk.js.map": "/nectar-filter/static/js/2.2846b22b.chunk.js.map",
+    "index.html": "/nectar-filter/index.html",
+    "precache-manifest.421deb7619e5573b9ad450b479b5283e.js": "/nectar-filter/precache-manifest.421deb7619e5573b9ad450b479b5283e.js",
+    "service-worker.js": "/nectar-filter/service-worker.js",
+    "static/css/2.1987e178.chunk.css.map": "/nectar-filter/static/css/2.1987e178.chunk.css.map",
+    "static/css/main.399000e4.chunk.css.map": "/nectar-filter/static/css/main.399000e4.chunk.css.map",
+    "static/js/2.2846b22b.chunk.js.LICENSE.txt": "/nectar-filter/static/js/2.2846b22b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1fa3df40.js",
+    "static/css/2.1987e178.chunk.css",
+    "static/js/2.2846b22b.chunk.js",
+    "static/css/main.399000e4.chunk.css",
+    "static/js/main.16ae252c.chunk.js"
+  ]
+}
