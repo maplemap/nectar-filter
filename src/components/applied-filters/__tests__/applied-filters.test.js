@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {Tag, Button} from 'antd';
+import {CLEAR_APPLIED_FILTERS} from 'reducer/constants';
 import {AppliedFilters, NONE} from '../applied-filters';
 
 jest.mock('react', () => ({
@@ -54,12 +55,11 @@ describe('AppliedFilters', () => {
             });
         });
 
-
         describe('when `clearAllFilters` method was invoked', () => {
-            it('should call `dispatch` with updated `appliedFilters`', () => {
+            it('should call `dispatch` with `CLEAR_ALL_APPLIED_FILTERS` type', () => {
                 wrapper.find(Button).props().onClick();
 
-                expect(dispatch).toHaveBeenCalledWith({appliedFilters: {}});
+                expect(dispatch).toHaveBeenCalledWith({type: CLEAR_APPLIED_FILTERS});
             });
         });
     });

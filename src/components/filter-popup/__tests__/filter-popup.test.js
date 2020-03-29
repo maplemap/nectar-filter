@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {Popover} from 'antd';
+import {SET_APPLIED_FILTERS, REMOVE_APPLIED_FILTER_TYPE} from 'reducer/constants';
 import {FilterPopup} from '../filter-popup';
 
 jest.mock('react', () => ({
@@ -30,6 +31,7 @@ describe('FilterPopup', () => {
             dispatch
         });
 
+        React.useContext.mockReturnValue(getContextData({}));
         React.useState.mockImplementation(popoverShown => [popoverShown, setPopoverShown]);
     });
 
@@ -69,35 +71,29 @@ describe('FilterPopup', () => {
     });
 
     describe('when `resetCheckedFilters` method was invoked', () => {
-        it('should call `dispatch` with new `appliedFilters` without data by `filterType`', () => {
+        it('should call `dispatch` with new `REMOVE_APPLIED_FILTER_TYPE` type', () => {
             const filterType = 'size';
-            const appliedFilters = {color: {}, [filterType]: {}};
-            React.useContext.mockReturnValueOnce(getContextData({appliedFilters}));
+            getShallow().find(Popover).props().content.props.onReset(filterType);
 
-            const popoverContent = getShallow().find(Popover).props().content;
-            popoverContent.props.onReset(filterType);
-            delete appliedFilters[filterType];
-
-            expect(dispatch).toHaveBeenCalledWith({appliedFilters});
-            dispatch.mockReset();
+            expect(dispatch).toHaveBeenCalledWith({
+                type: REMOVE_APPLIED_FILTER_TYPE,
+                payload: {filterType}
+            });
         });
     });
 
     describe('when `setAppliedFilters` method was invoked', () => {
         describe('when `checkedFiltersIds` parameter has length more then `0`', () => {
-            it('should call `dispatch` with new `appliedFilters` with data by `filterType`', () => {
+            it('should call `dispatch` with new `SET_APPLIED_FILTERS` type', () => {
                 const filterType = 'size';
                 const checkedFiltersIds = ['1x1'];
-                const appliedFilters = {color: {}};
-                React.useContext.mockReturnValueOnce(getContextData({appliedFilters}));
-
                 const popoverContent = getShallow().find(Popover).props().content;
                 popoverContent.props.onApply({checkedFiltersIds, filterType});
 
                 expect(dispatch).toHaveBeenCalledWith({
-                    appliedFilters: {...appliedFilters, ...{[filterType]: checkedFiltersIds}}
+                    type: SET_APPLIED_FILTERS,
+                    payload: {checkedFiltersIds, filterType}
                 });
-                dispatch.mockReset();
             })
         });
     });

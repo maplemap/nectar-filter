@@ -2,13 +2,10 @@
 
 exports[`AppliedFilters when \`appliedFilters\` is provided when \`removeFilterItem\` method was invoked should call \`dispatch\` with updated \`appliedFilters\` 1`] = `
 Object {
-  "appliedFilters": Object {
-    "color": Array [
-      "blue",
-    ],
-    "size": Array [
-      "2x2",
-    ],
+  "payload": Object {
+    "filter": "1x1",
+    "filterType": "size",
   },
+  "type": "REMOVE_APPLIED_FILTER_ITEM",
 }
 `;

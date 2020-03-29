@@ -1,6 +1,7 @@
 import React, {useContext, useState, useCallback} from 'react';
 import {Popover, Collapse} from 'antd';
 import {ContextApp} from 'reducer';
+import {SET_APPLIED_FILTERS, REMOVE_APPLIED_FILTER_TYPE} from 'reducer/constants';
 import {getCapitalized} from 'utils';
 import {FilterPopupContent} from './filter-popup-content';
 
@@ -15,20 +16,18 @@ export const FilterPopup = ({children, filterTypes, ...props}) => {
     const setAppliedFilters = useCallback(({checkedFiltersIds, filterType}) => {
         if (checkedFiltersIds.length > 0) {
             dispatch({
-                appliedFilters: {
-                    ...appliedFilters,
-                    [filterType]: checkedFiltersIds
-                }
+                type: SET_APPLIED_FILTERS,
+                payload: {checkedFiltersIds, filterType}
             });
         }
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const resetCheckedFilters = useCallback(filterType => {
-        const newAppliedFilters = {...appliedFilters};
-        delete newAppliedFilters[filterType];
-
-        dispatch({appliedFilters: newAppliedFilters});
+        dispatch({
+            type: REMOVE_APPLIED_FILTER_TYPE,
+            payload: {filterType}
+        });
     });
 
     const onVisibleChange = shown => {

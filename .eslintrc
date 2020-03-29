@@ -10,7 +10,7 @@
     ],
     "rules": {
         "semi": 0,
-        "indent": ["error", 4],
+        "indent": ["error", 4, { "SwitchCase": 1 }],
         "max-len": [2, 120, 4],
         "operator-linebreak": 0,
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],

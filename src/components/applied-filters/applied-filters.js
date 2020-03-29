@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {Tag, Button} from 'antd';
 import {ContextApp} from 'reducer';
+import {REMOVE_APPLIED_FILTER_ITEM, CLEAR_APPLIED_FILTERS} from 'reducer/constants';
 
 import './applied-filters.less';
 
@@ -13,15 +14,13 @@ export const AppliedFilters = () => {
 
     const removeFilterItem = ({filterType, filter}) => {
         dispatch({
-            appliedFilters: {
-                ...appliedFilters,
-                [filterType]: appliedFilters[filterType].filter(item => item !== filter)
-            }
+            type: REMOVE_APPLIED_FILTER_ITEM,
+            payload: {filterType, filter}
         });
     };
 
     const clearAllFilters = () => {
-        dispatch({appliedFilters: {}})
+        dispatch({type: CLEAR_APPLIED_FILTERS})
     };
 
     const getFilterItem = filterType => (
