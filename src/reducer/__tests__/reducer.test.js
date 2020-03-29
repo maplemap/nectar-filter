@@ -41,27 +41,45 @@ describe('reducer', () => {
                 type: REMOVE_APPLIED_FILTER_TYPE,
                 payload: {filterType}
             };
-            reducer(state, action);
 
             expect(reducer(state, action)).toMatchSnapshot();
         });
     });
 
     describe('when action `type` is equal to `REMOVE_APPLIED_FILTER_ITEM`', () => {
-        it('should return `appliedFilters` without removed items in `filterType`', () => {
-            const filterType = 'filterType';
-            const filter = 'filter1';
-            const state = {
-                appliedFilters: {
-                    [filterType]: [filter, 'filter2']
-                }
-            };
-            const action = {
-                type: REMOVE_APPLIED_FILTER_ITEM,
-                payload: {filterType, filter}
-            };
+        describe('when items count of `filterType` is more then `1`', () => {
+            it('should return `appliedFilters` without removed items in `filterType`', () => {
+                const filterType = 'filterType';
+                const filter = 'filter1';
+                const state = {
+                    appliedFilters: {
+                        [filterType]: [filter, 'filter2']
+                    }
+                };
+                const action = {
+                    type: REMOVE_APPLIED_FILTER_ITEM,
+                    payload: {filterType, filter}
+                };
 
-            expect(reducer(state, action)).toMatchSnapshot();
+                expect(reducer(state, action)).toMatchSnapshot();
+            });
+        });
+        describe('when items count of `filterType` is equal to `1`', () => {
+            it('should remove key by `filterType` in `appliedFilters`', () => {
+                const filterType = 'filterType';
+                const filter = 'filter1';
+                const state = {
+                    appliedFilters: {
+                        [filterType]: [filter]
+                    }
+                };
+                const action = {
+                    type: REMOVE_APPLIED_FILTER_ITEM,
+                    payload: {filterType, filter}
+                };
+
+                expect(reducer(state, action)).toEqual({appliedFilters: {}});
+            });
         });
     });
 

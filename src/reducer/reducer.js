@@ -45,13 +45,18 @@ export const reducer = (state = {}, action = {}) => {
 
         case REMOVE_APPLIED_FILTER_ITEM: {
             const {filterType, filter} = payload;
+            const {appliedFilters} = state;
+            const newFiltersByFilterType = appliedFilters[filterType].filter(item => item !== filter);
+            const newAppliedFilters = {...appliedFilters};
+            if (newFiltersByFilterType.length === 0) {
+                delete newAppliedFilters[filterType];
+            } else {
+                newAppliedFilters[filterType] = newFiltersByFilterType;
+            }
 
             return {
                 ...state,
-                appliedFilters: {
-                    ...state.appliedFilters,
-                    [filterType]: state.appliedFilters[filterType].filter(item => item !== filter)
-                }
+                appliedFilters: newAppliedFilters
             }
         }
 

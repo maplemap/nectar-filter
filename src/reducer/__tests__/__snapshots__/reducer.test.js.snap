@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`reducer when action \`type\` is equal to \`REMOVE_APPLIED_FILTER_ITEM\` should return \`appliedFilters\` without removed items in \`filterType\` 1`] = `
+exports[`reducer when action \`type\` is equal to \`REMOVE_APPLIED_FILTER_ITEM\` when items count of \`filterType\` is more then \`1\` should return \`appliedFilters\` without removed items in \`filterType\` 1`] = `
 Object {
   "appliedFilters": Object {
     "filterType": Array [
