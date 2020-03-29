@@ -5,8 +5,9 @@
   "license": "MIT License",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/maplemap/nectar-filter"
   },
+  "homepage": "https://maplemap.github.io/nectar-filter",
   "author": {
     "name": "Serg Illarionov <sergio.illarionov@gmail.com>"
   },
@@ -40,20 +41,22 @@
     ]
   },
   "devDependencies": {
+    "@babel/compat-data": "^7.9.0",
+    "@babel/helper-validator-identifier": "^7.9.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "babel-plugin-import": "^1.13.0",
+    "components": "^0.1.0",
     "customize-cra": "^0.9.1",
     "enzyme": "^3.11.0",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "react-app-rewired": "^2.1.5",
-    "react-scripts": "3.4.0",
-    "components": "^0.1.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
-    "eslint-plugin-jasmine": "^4.1.0"
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-jasmine": "^4.1.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "react-app-rewired": "^2.1.5",
+    "react-scripts": "3.4.0"
   },
   "jest": {
     "snapshotSerializers": [
