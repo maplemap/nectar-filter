@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducer when action \`type\` is equal to \`REMOVE_APPLIED_FILTER_ITEM\` should return \`appliedFilters\` without removed items in \`filterType\` 1`] = `
+Object {
+  "appliedFilters": Object {
+    "filterType": Array [
+      "filter2",
+    ],
+  },
+}
+`;
+
+exports[`reducer when action \`type\` is equal to \`REMOVE_APPLIED_FILTER_TYPE\` should remove key by \`filterType\` in \`appliedFilters\` 1`] = `
+Object {
+  "appliedFilters": Object {
+    "filterType2": Array [
+      "filter2",
+    ],
+  },
+}
+`;
